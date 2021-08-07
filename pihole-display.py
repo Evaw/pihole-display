@@ -110,7 +110,7 @@ def pushToScreen():
     disp.image(image, rotation)
 
 while True:
-    #global showState 
+    #global showState
     y = top
     if not buttonA.value:
         showState.showA = True
@@ -141,7 +141,7 @@ while True:
 
     showState.showACount = (showState.showACount + 1) % (ITERATIONS + 2)
     showState.showBCount = (showState.showBCount + 1) % (ITERATIONS + 2)
-    
+
     # print({
     #     **showState.toMap(),
     #     "A": buttonA.value,
@@ -150,7 +150,7 @@ while True:
     if showState.showA:  # just button A pressed
         clearCanvas()
         backlight.value = True
-        
+
         # Shell scripts for system monitoring from here:
         # https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
         cmd = "hostname -I | cut -d\' \' -f1"
@@ -167,6 +167,8 @@ while True:
 
         draw.text((x, y), IP, font=font, fill="#FFFF00")
         y += font.getsize(IP)[1]
+        draw.text((x, y), HOST, font=font, fill="#FFFF00")
+        y += font.getsize(HOST)[1]
         draw.text((x, y), CPU, font=font, fill="#FFFF00")
         y += font.getsize(CPU)[1]
         draw.text((x, y), MemUsage, font=font, fill="#00FF00")
@@ -192,11 +194,10 @@ while True:
         except KeyError:
             time.sleep(1)
             continue
-            
+
         draw.text((x, y), IP, font=font, fill="#FFFF00")
         y += font.getsize(IP)[1]
-        draw.text((x, y), HOST, font=font, fill="#FFFF00")
-        y += font.getsize(HOST)[1]
+
         draw.text((x, y), "Ads Blocked: {}".format(str(ADSBLOCKED)), font=font, fill="#00FF00")
         y += font.getsize(str(ADSBLOCKED))[1]
         draw.text((x, y), "Clients: {}".format(str(CLIENTS)), font=font, fill="#0000FF")
